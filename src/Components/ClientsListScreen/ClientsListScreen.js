@@ -1,11 +1,19 @@
 import styled from "styled-components";
+import ClientContainer from "./ClientContainer";
 
 export default function ClientsListScreen(){
     return(
         <>
             <Container>
                 <ClientsListContainer>
-                    <h1>Hello new job</h1>
+                    <ListContainerHeader>
+                        <h1>Lista de Clientes</h1>
+                        <NewClientButton />
+                    </ListContainerHeader>
+
+                    <ClientContainer />
+                    <ClientContainer />
+                    <ClientContainer />
                 </ClientsListContainer>
             </Container>
         </>
@@ -24,15 +32,34 @@ const Container = styled.div`
 const ClientsListContainer = styled.div`
     width: 90%;
     height: 80%;
-    background-color: #FFFFFF;
-    box-shadow: rgb(145 158 171 / 24%) 0px 0px 2px 0px;
     border-radius: 5px;
+`
+const ListContainerHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h1{
+        font-size: 22px;
+    }
 `
 
 
-function NewClientButon(){
+function NewClientButton(){
     return(
-        <>
-        </>
+        <ButtonContainer>Adicionar</ButtonContainer>
     )
 }
+
+const ButtonContainer = styled.button`
+    width: 180px;
+    height: 40px;
+    padding: 10px;
+    background: #2D78EB;
+    color: #FFFFFF;
+    border-style: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+`   
