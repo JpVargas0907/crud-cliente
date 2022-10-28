@@ -1,7 +1,9 @@
+import ClientsListScreen from "./Components/ClientsListScreen/ClientsListScreen";
+
 function App() {
   return (
     <>
-    <h1>Hello New Job!</h1>
+      <ClientsListScreen/>
     </>
   );
 }
