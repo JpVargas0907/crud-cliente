@@ -1,28 +1,52 @@
 import styled from 'styled-components';
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
+import { useState } from 'react';
+import axios from 'axios';
 
 export default function AlterClientScreen(){
 
-    const { alterScreenStatus, setAlterScreenStatus } = useContext(UserContext);
+    const { alterScreenStatus, setAlterScreenStatus, id, setId  } = useContext(UserContext);
+    const [ clientName, setClientName ] = useState('');
 
     function closeAlterStatus(){
         setAlterScreenStatus(false);
     }
 
+    function alterClientName(){
+        const URL = "http://localhost:8080/clientes";
+        const body = {
+            id: id,
+            name: clientName
+        };
+        const promise = axios.put(URL, body);
+
+        promise.then((response) => {
+            alert("Nome do cliente alterado com sucesso!")
+        });
+
+        promise.catch((error) => {
+            alert(error.message);
+        })
+    }
+
     return(
         <Content alterScreenStatus={alterScreenStatus}>
             <AlterClientForm>
-                <Form>
+                <Form onSubmit={alterClientName}>
                     <Titlle>Alterar o Nome do Cliente</Titlle>
                     <input 
                         type="text"
                         placeholder=" Digite o nome do cliente"
+                        required
+                        onChange={(e) => 
+                            setClientName(e.target.value)
+                        }
                     />
 
                     <div>
                         <p onClick={closeAlterStatus}>Cancelar</p>
-                        <button>Confirmar Alteração</button>
+                        <button type="Submit">Confirmar Alteração</button>
                     </div>
                 </Form>
             </AlterClientForm>

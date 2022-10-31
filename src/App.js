@@ -7,9 +7,10 @@ import UserContext from "./contexts/UserContext";
 function App() {
   const [newClientScreenStatus, setNewClientScreenStatus] = useState(false);
   const [alterScreenStatus, setAlterScreenStatus] = useState(false);
+  const [ id, setId ] = useState(0);
 
   return (
-    <UserContext.Provider value={{newClientScreenStatus, setNewClientScreenStatus, alterScreenStatus, setAlterScreenStatus}}>
+    <UserContext.Provider value={{newClientScreenStatus, setNewClientScreenStatus, alterScreenStatus, setAlterScreenStatus, id, setId}}>
       <RegisterNewClientScreen />
       <ClientsListScreen/>
       <AlterClientScreen />

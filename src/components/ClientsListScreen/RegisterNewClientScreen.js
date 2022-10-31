@@ -7,7 +7,7 @@ import { useState } from 'react';
 export default function RegisterNewClientScreen(){
 
     const { newClientScreenStatus, setNewClientScreenStatus } = useContext(UserContext);
-    const [clientName, setClientName ] = useState('');
+    const [clientName, setClientName] = useState('');
     console.log(clientName)
 
     function closeNewClientScreen(){

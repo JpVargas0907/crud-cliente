@@ -4,11 +4,12 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
 export default function ClientContainer(props){
-    const { setAlterScreenStatus } = useContext(UserContext);
+    const { setAlterScreenStatus, setId } = useContext(UserContext);
     const { id, name } = props;
 
     function openAlterScreen(){
         setAlterScreenStatus(true);
+        setId(id);
     }
 
     return(
