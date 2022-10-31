@@ -8,14 +8,13 @@ export default function RegisterNewClientScreen(){
 
     const { newClientScreenStatus, setNewClientScreenStatus } = useContext(UserContext);
     const [clientName, setClientName] = useState('');
-    console.log(clientName)
 
     function closeNewClientScreen(){
         setNewClientScreenStatus(false);
     }   
 
     function registerNewClient(){
-        const URL = "http://localhost:8080/clientes"
+        const URL = "http://localhost:8080/clientes";
         const body = {
             name: clientName
         }

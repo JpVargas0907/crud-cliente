@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
+import axios from "axios";
 
 export default function ClientContainer(props){
     const { setAlterScreenStatus, setId } = useContext(UserContext);
@@ -12,6 +13,21 @@ export default function ClientContainer(props){
         setId(id);
     }
 
+    function deleteClient(){
+        if(window.confirm("Você gostaria de deletar esse cliente?") === true){
+            const URL = "http://localhost:8080/clientes";
+            const promise = axios.delete(`${URL}/${id}`);
+
+            promise.then((response) => {
+                alert("Cliente deletado com sucesso!");
+            })
+
+            promise.catch((error) => {
+                alert(error.message);
+            })
+        }
+    }
+
     return(
         <Container>
             <ClientInfo>
@@ -20,7 +36,7 @@ export default function ClientContainer(props){
             </ClientInfo>
             <Buttons>
                 <ion-icon onClick={openAlterScreen} name="create-outline"></ion-icon>
-                <ion-icon name="trash-outline"></ion-icon>
+                <ion-icon onClick={deleteClient} name="trash-outline"></ion-icon>
             </Buttons>
         </Container>
     )
