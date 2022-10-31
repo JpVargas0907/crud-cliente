@@ -3,17 +3,19 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import { useState } from 'react';
 import axios from 'axios';
+import Notiflix from 'notiflix';
 
-export default function AlterClientScreen(){
+export default function AlterClientScreen() {
 
-    const { alterScreenStatus, setAlterScreenStatus, id, setId  } = useContext(UserContext);
-    const [ clientName, setClientName ] = useState('');
+    const { alterScreenStatus, setAlterScreenStatus, id, setId } = useContext(UserContext);
+    const [clientName, setClientName] = useState('');
 
-    function closeAlterStatus(){
+    function closeAlterStatus() {
         setAlterScreenStatus(false);
     }
 
-    function alterClientName(){
+    function alterClientName(event) {
+        event.preventDefault();
         const URL = "http://localhost:8080/clientes";
         const body = {
             id: id,
@@ -22,24 +24,26 @@ export default function AlterClientScreen(){
         const promise = axios.put(URL, body);
 
         promise.then((response) => {
-            alert("Nome do cliente alterado com sucesso!")
+            Notiflix.Notify.success('Nome do cliente alterado com sucesso!');
+            closeAlterStatus();
+            setClientName("");
         });
 
         promise.catch((error) => {
-            alert(error.message);
+            Notiflix.Notify.failure(error.message);
         })
     }
 
-    return(
+    return (
         <Content alterScreenStatus={alterScreenStatus}>
             <AlterClientForm>
                 <Form onSubmit={alterClientName}>
-                    <Titlle>Alterar o Nome do Cliente</Titlle>
-                    <input 
+                    <Titlle>Alterar Nome do Cliente</Titlle>
+                    <input
                         type="text"
                         placeholder=" Digite o nome do cliente"
                         required
-                        onChange={(e) => 
+                        onChange={(e) =>
                             setClientName(e.target.value)
                         }
                     />
@@ -82,16 +86,17 @@ const AlterClientForm = styled.div`
 `
 
 const Titlle = styled.p`
-    margin: 100px 0px 40px 0px;
+    margin: 100px 0px 20px 0px;
     display: flex;
     align-items: center;
     font-size: 32px;
+    font-weight: bold;
     color: #2D78EB;
 
     @media (max-width: 600px) {
         font-size: 24px;
     }
-`   
+`
 
 const Form = styled.form`
     width: 80%;
@@ -120,7 +125,8 @@ const Form = styled.form`
     }
 
     button{
-        width: 140px;
+        font-weight: 700;
+        width: 160px;
         height: 48px;
         background: #2D78EB;
         box-shadow: 0px 3px 6px #2D78EB;

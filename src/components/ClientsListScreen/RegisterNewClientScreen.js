@@ -3,6 +3,7 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import axios from 'axios';
 import { useState } from 'react';
+import Notiflix from 'notiflix';
 
 export default function RegisterNewClientScreen(){
 
@@ -13,7 +14,8 @@ export default function RegisterNewClientScreen(){
         setNewClientScreenStatus(false);
     }   
 
-    function registerNewClient(){
+    function registerNewClient(event){
+        event.preventDefault();
         const URL = "http://localhost:8080/clientes";
         const body = {
             name: clientName
@@ -21,12 +23,13 @@ export default function RegisterNewClientScreen(){
         const promise = axios.post(URL, body);
         
         promise.then((response) => {
-            alert("Cliente cadastrado com sucesso!");
-            setNewClientScreenStatus(false);
+            Notiflix.Notify.success('Cliente cadastrado com sucesso!');
+            closeNewClientScreen();
+            setClientName("");
         })
 
         promise.catch((error) => {
-            alert(error.message);
+            Notiflix.Notify.failure(error.message);
         })
     }
 
@@ -82,10 +85,11 @@ const NewClientForm = styled.div`
 `
 
 const Titlle = styled.p`
-    margin: 100px 0px 40px 0px;
+    margin: 100px 0px 20px 0px;
     display: flex;
     align-items: center;
     font-size: 32px;
+    font-weight: bold;
     color: #2D78EB;
 
     @media (max-width: 600px) {
@@ -120,7 +124,8 @@ const Form = styled.form`
     }
 
     button{
-        width: 140px;
+        font-weight: 700;
+        width: 160px;
         height: 48px;
         background: #2D78EB;
         box-shadow: 0px 3px 6px #2D78EB;

@@ -4,6 +4,7 @@ import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import axios from 'axios';
 import { useEffect, useState } from "react";
+import Notiflix from 'notiflix';
 
 export default function ClientsListScreen() {
 
@@ -20,7 +21,7 @@ export default function ClientsListScreen() {
         });
 
         promise.catch((error) => {
-            alert(error.message);
+            Notiflix.Notify.failure(error.message);
         });
     }, [clientsList]);
 
@@ -31,7 +32,7 @@ export default function ClientsListScreen() {
                 return <ClientContainer key={id} id={id} name={name}/>
             })
         } else {
-            return <p>LOADING ...</p>
+            return <p>Sem clientes cadastrados</p>
         }
     }
 
@@ -98,6 +99,7 @@ const ButtonContainer = styled.button`
     border-style: none;
     border-radius: 5px;
     box-shadow: 0px 3px 6px #2D78EB;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 700;
     cursor: pointer;
 `   

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import axios from "axios";
+import Notiflix from 'notiflix';
 
 export default function ClientContainer(props){
     const { setAlterScreenStatus, setId } = useContext(UserContext);
@@ -19,11 +20,11 @@ export default function ClientContainer(props){
             const promise = axios.delete(`${URL}/${id}`);
 
             promise.then((response) => {
-                alert("Cliente deletado com sucesso!");
+                Notiflix.Notify.success('Cliente deletado com sucesso!');
             })
 
             promise.catch((error) => {
-                alert(error.message);
+                Notiflix.Notify.failure(error.message);
             })
         }
     }
