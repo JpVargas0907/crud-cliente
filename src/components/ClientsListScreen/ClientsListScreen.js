@@ -1,19 +1,24 @@
 import styled from "styled-components";
-import ClientContainer from "./ClientContainer";
+import ClientContainer from "../../components/ClientsListScreen/ClientContainer";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function ClientsListScreen(){
+
+    const { setNewClientScreenStatus } = useContext(UserContext);
+
     return(
         <>
             <Container>
                 <ClientsListContainer>
                     <ListContainerHeader>
                         <h1>Lista de Clientes</h1>
-                        <NewClientButton />
+                        <NewClientButton setNewClientScreenStatus={setNewClientScreenStatus}/>
                     </ListContainerHeader>
 
-                    <ClientContainer />
-                    <ClientContainer />
-                    <ClientContainer />
+                    <ClientContainer/>
+                    <ClientContainer/>
+                    <ClientContainer/>
                 </ClientsListContainer>
             </Container>
         </>
@@ -47,9 +52,16 @@ const ListContainerHeader = styled.div`
 `
 
 
-function NewClientButton(){
+function NewClientButton(props){
+
+    const { setNewClientScreenStatus} = props;
+    
+    function openNewClientScreen(){
+        setNewClientScreenStatus(true);
+    }   
+
     return(
-        <ButtonContainer>Adicionar</ButtonContainer>
+        <ButtonContainer onClick={openNewClientScreen}>Adicionar</ButtonContainer>
     )
 }
 

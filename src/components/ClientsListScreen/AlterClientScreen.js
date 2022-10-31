@@ -1,8 +1,17 @@
 import styled from 'styled-components';
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function AlterClientScreen(){
+
+    const { alterScreenStatus, setAlterScreenStatus } = useContext(UserContext);
+
+    function closeAlterStatus(){
+        setAlterScreenStatus(false);
+    }
+
     return(
-        <Content>
+        <Content alterScreenStatus={alterScreenStatus}>
             <AlterClientForm>
                 <Titlle>Alterar o Nome do Cliente</Titlle>
                 <Form>
@@ -12,7 +21,7 @@ export default function AlterClientScreen(){
                     />
 
                     <div>
-                        <p>Cancelar</p>
+                        <p onClick={closeAlterStatus}>Cancelar</p>
                         <button>Confirmar Alteração</button>
                     </div>
                 </Form>
@@ -22,8 +31,7 @@ export default function AlterClientScreen(){
 }
 
 const Content = styled.div`
-    //display: ${props => props.newCardStatus ? "block" : "none"};
-    display: none;
+    display: ${props => props.alterScreenStatus ? "block" : "none"};
     top: 0px;
     position: fixed;
     height: 100vh;

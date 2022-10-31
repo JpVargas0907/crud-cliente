@@ -1,8 +1,17 @@
 import styled from 'styled-components';
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function RegisterNewClientScreen(){
+
+    const { newClientScreenStatus, setNewClientScreenStatus } = useContext(UserContext);
+
+    function closeNewClientScreen(){
+        setNewClientScreenStatus(false);
+    }   
+
     return(
-        <Content>
+        <Content newClientScreenStatus={newClientScreenStatus}>
             <NewClientForm>
                 <Titlle>Cadastrar Novo Cliente</Titlle>
                 <Form>
@@ -12,7 +21,7 @@ export default function RegisterNewClientScreen(){
                     />
 
                     <div>
-                        <p>Cancelar</p>
+                        <p onClick={closeNewClientScreen}>Cancelar</p>
                         <button>Cadastrar Cliente</button>
                     </div>
                 </Form>
@@ -22,8 +31,7 @@ export default function RegisterNewClientScreen(){
 }
 
 const Content = styled.div`
-    //display: ${props => props.newCardStatus ? "block" : "none"};
-    display: none;
+    display: ${props => props.newClientScreenStatus ? "block" : "none"};
     top: 0px;
     position: fixed;
     height: 100vh;

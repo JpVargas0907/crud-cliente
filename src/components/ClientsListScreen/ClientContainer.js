@@ -1,7 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import { useContext } from "react";
+import UserContext from "../../contexts/UserContext";
 
 export default function ClientContainer(){
+    const { setAlterScreenStatus } = useContext(UserContext);
+
+    function openAlterScreen(){
+        setAlterScreenStatus(true);
+    }
+
     return(
         <Container>
             <ClientInfo>
@@ -9,7 +17,7 @@ export default function ClientContainer(){
                 <p><b>nome:</b> João Paulo</p>
             </ClientInfo>
             <Buttons>
-                <ion-icon name="create-outline"></ion-icon>
+                <ion-icon onClick={openAlterScreen} name="create-outline"></ion-icon>
                 <ion-icon name="trash-outline"></ion-icon>
             </Buttons>
         </Container>
