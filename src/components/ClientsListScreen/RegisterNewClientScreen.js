@@ -1,28 +1,53 @@
 import styled from 'styled-components';
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
+import axios from 'axios';
+import { useState } from 'react';
 
 export default function RegisterNewClientScreen(){
 
     const { newClientScreenStatus, setNewClientScreenStatus } = useContext(UserContext);
+    const [clientName, setClientName ] = useState('');
+    console.log(clientName)
 
     function closeNewClientScreen(){
         setNewClientScreenStatus(false);
     }   
 
+    function registerNewClient(){
+        const URL = "http://localhost:8080/clientes"
+        const body = {
+            name: clientName
+        }
+        const promise = axios.post(URL, body);
+        
+        promise.then((response) => {
+            alert("Cliente cadastrado com sucesso!");
+            setNewClientScreenStatus(false);
+        })
+
+        promise.catch((error) => {
+            alert(error.message);
+        })
+    }
+
     return(
         <Content newClientScreenStatus={newClientScreenStatus}>
             <NewClientForm>
-                <Titlle>Cadastrar Novo Cliente</Titlle>
-                <Form>
+                <Form onSubmit={registerNewClient}>
+                    <Titlle>Cadastrar Novo Cliente</Titlle>
                     <input 
                         type="text"
                         placeholder=" Digite o nome do cliente"
+                        required
+                        onChange={(e) => 
+                            setClientName(e.target.value)
+                        }
                     />
 
                     <div>
                         <p onClick={closeNewClientScreen}>Cancelar</p>
-                        <button>Cadastrar Cliente</button>
+                        <button type="submit">Cadastrar Cliente</button>
                     </div>
                 </Form>
             </NewClientForm>
@@ -51,14 +76,22 @@ const NewClientForm = styled.div`
     right: 0px;
     top: 0px;
     z-index: 1;
+
+    @media (max-width: 600px) {
+        width: 100vw;
+    }
 `
 
 const Titlle = styled.p`
-    margin: 100px 0px 20px 0px;
+    margin: 100px 0px 40px 0px;
     display: flex;
     align-items: center;
     font-size: 32px;
     color: #2D78EB;
+
+    @media (max-width: 600px) {
+        font-size: 24px;
+    }
 `   
 
 const Form = styled.form`
@@ -67,11 +100,10 @@ const Form = styled.form`
     flex-direction: column;
 
     input{
-        width: 100%;
-        height: 60px;
+        height: 40px;
         border: 1px solid #B9B9B9;
         border-radius: 8px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
         padding: 10px;
     }
 

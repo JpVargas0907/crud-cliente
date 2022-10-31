@@ -2,26 +2,49 @@ import styled from "styled-components";
 import ClientContainer from "../../components/ClientsListScreen/ClientContainer";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
+import axios from 'axios';
+import { useEffect, useState } from "react";
 
-export default function ClientsListScreen(){
+export default function ClientsListScreen() {
 
     const { setNewClientScreenStatus } = useContext(UserContext);
+    const [clientsList, setClientsList] = useState([]);
 
-    return(
-        <>
-            <Container>
-                <ClientsListContainer>
-                    <ListContainerHeader>
-                        <h1>Lista de Clientes</h1>
-                        <NewClientButton setNewClientScreenStatus={setNewClientScreenStatus}/>
-                    </ListContainerHeader>
+    useEffect(() =>{
+        const URL = "http://localhost:8080/clientes";
+        const promise = axios.get(URL);
 
-                    <ClientContainer/>
-                    <ClientContainer/>
-                    <ClientContainer/>
-                </ClientsListContainer>
-            </Container>
-        </>
+        promise.then((response) => {
+            const {data} = response;
+            setClientsList([...data]);
+        });
+
+        promise.catch((error) => {
+            alert(error.message);
+        });
+    }, [clientsList]);
+
+    function buildClientsList(){
+        if(clientsList.length > 0){
+            return clientsList.map(client => {
+                const { id, name } = client;
+                return <ClientContainer key={id} id={id} name={name}/>
+            })
+        } else {
+            return <p>LOADING ...</p>
+        }
+    }
+
+    return (
+        <Container>
+            <ClientsListContainer>
+                <ListContainerHeader>
+                    <h1>Lista de Clientes</h1>
+                    <NewClientButton setNewClientScreenStatus={setNewClientScreenStatus} />
+                </ListContainerHeader>
+            {buildClientsList()}
+            </ClientsListContainer>
+        </Container>
     )
 }
 
@@ -30,7 +53,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: #DCDCDC;
 `
 
@@ -38,6 +61,7 @@ const ClientsListContainer = styled.div`
     width: 90%;
     height: 80%;
     border-radius: 5px;
+    margin: 40px 0px 40px 0px;
 `
 const ListContainerHeader = styled.div`
     width: 100%;
@@ -52,15 +76,15 @@ const ListContainerHeader = styled.div`
 `
 
 
-function NewClientButton(props){
+function NewClientButton(props) {
 
-    const { setNewClientScreenStatus} = props;
-    
-    function openNewClientScreen(){
+    const { setNewClientScreenStatus } = props;
+
+    function openNewClientScreen() {
         setNewClientScreenStatus(true);
-    }   
+    }
 
-    return(
+    return (
         <ButtonContainer onClick={openNewClientScreen}>Adicionar</ButtonContainer>
     )
 }

@@ -13,11 +13,11 @@ export default function AlterClientScreen(){
     return(
         <Content alterScreenStatus={alterScreenStatus}>
             <AlterClientForm>
-                <Titlle>Alterar o Nome do Cliente</Titlle>
                 <Form>
+                    <Titlle>Alterar o Nome do Cliente</Titlle>
                     <input 
                         type="text"
-                        placeholder=" Digite o novo nome do cliente"
+                        placeholder=" Digite o nome do cliente"
                     />
 
                     <div>
@@ -51,14 +51,22 @@ const AlterClientForm = styled.div`
     right: 0px;
     top: 0px;
     z-index: 1;
+
+    @media (max-width: 600px) {
+        width: 100vw;
+    }
 `
 
 const Titlle = styled.p`
-    margin: 100px 0px 20px 0px;
+    margin: 100px 0px 40px 0px;
     display: flex;
     align-items: center;
     font-size: 32px;
     color: #2D78EB;
+
+    @media (max-width: 600px) {
+        font-size: 24px;
+    }
 `   
 
 const Form = styled.form`
@@ -67,11 +75,10 @@ const Form = styled.form`
     flex-direction: column;
 
     input{
-        width: 100%;
-        height: 60px;
+        height: 40px;
         border: 1px solid #B9B9B9;
         border-radius: 8px;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
         padding: 10px;
     }
 

@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 
-export default function ClientContainer(){
+export default function ClientContainer(props){
     const { setAlterScreenStatus } = useContext(UserContext);
+    const { id, name } = props;
 
     function openAlterScreen(){
         setAlterScreenStatus(true);
@@ -13,8 +14,8 @@ export default function ClientContainer(){
     return(
         <Container>
             <ClientInfo>
-                <p><b>id:</b> 1</p>
-                <p><b>nome:</b> João Paulo</p>
+                <p><b>id:</b> {id}</p>
+                <p><b>nome:</b> {name}</p>
             </ClientInfo>
             <Buttons>
                 <ion-icon onClick={openAlterScreen} name="create-outline"></ion-icon>
@@ -37,6 +38,7 @@ const Container = styled.div`
 
     p{
         font-size: larger;
+        margin: 4px;
     }
 
     ion-icon{
