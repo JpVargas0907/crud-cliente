@@ -35,6 +35,7 @@ const ClientsListContainer = styled.div`
     border-radius: 5px;
 `
 const ListContainerHeader = styled.div`
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -60,6 +61,7 @@ const ButtonContainer = styled.button`
     color: #FFFFFF;
     border-style: none;
     border-radius: 5px;
+    box-shadow: 0px 3px 6px #2D78EB;
     font-size: 20px;
     cursor: pointer;
 `   
