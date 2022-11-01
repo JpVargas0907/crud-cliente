@@ -45,6 +45,7 @@ export default function RegisterNewClientScreen(){
                         onChange={(e) => 
                             setClientName(e.target.value)
                         }
+                        value={clientName}
                     />
 
                     <div>

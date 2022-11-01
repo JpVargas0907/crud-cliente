@@ -46,6 +46,7 @@ export default function AlterClientScreen() {
                         onChange={(e) =>
                             setClientName(e.target.value)
                         }
+                        value={clientName}
                     />
 
                     <div>
