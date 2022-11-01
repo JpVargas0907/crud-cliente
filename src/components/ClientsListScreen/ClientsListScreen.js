@@ -60,7 +60,7 @@ const Container = styled.div`
 
 const ClientsListContainer = styled.div`
     width: 90%;
-    height: 80%;
+    height: 100vh;
     border-radius: 5px;
     margin: 40px 0px 40px 0px;
 `
