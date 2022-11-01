@@ -61,7 +61,7 @@ const ClientsListContainer = styled.div`
     width: 90%;
     height: 100%;
     border-radius: 5px;
-    margin: 40px 0px 40px 0px;
+    margin: 40px 0px 60px 0px;
 
     .message{
         color: #4D4B4D;
@@ -102,7 +102,7 @@ const NewClientMobileButton = styled.button`
     height: 60px;
     position: fixed;
     right: 30px;
-    bottom: 50px;
+    bottom: 30px;
     background: #2D78EB;
     color: #FFFFFF;
     border-style: none;
@@ -111,6 +111,7 @@ const NewClientMobileButton = styled.button`
     font-weight: bold;
     font-size: 32px;
     cursor: pointer;
+    z-index: 1;
     
 
     @media (max-width: 600px) {
