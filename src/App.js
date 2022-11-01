@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import AlterClientScreen from "./components/ClientsListScreen/AlterClientScreen";
 import ClientsListScreen from "./components/ClientsListScreen/ClientsListScreen";
 import RegisterNewClientScreen from "./components/ClientsListScreen/RegisterNewClientScreen";

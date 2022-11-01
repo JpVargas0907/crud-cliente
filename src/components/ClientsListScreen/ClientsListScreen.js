@@ -86,12 +86,39 @@ function NewClientButton(props) {
     }
 
     return (
-        <ButtonContainer onClick={openNewClientScreen}>Adicionar</ButtonContainer>
+        <>
+            <ButtonContainer onClick={openNewClientScreen}>Adicionar</ButtonContainer>
+            <NewClientMobileButton onClick={openNewClientScreen}><ion-icon name="add-outline"></ion-icon></NewClientMobileButton>
+        </>
     )
 }
 
+const NewClientMobileButton = styled.button`
+    display: none;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background: #2D78EB;
+    color: #FFFFFF;
+    border-style: none;
+    border-radius: 50%;
+    box-shadow: 0px 3px 6px #2D78EB;
+    font-weight: bold;
+    font-size: 32px;
+    cursor: pointer;
+    
+
+    @media (max-width: 600px) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+`
+
 const ButtonContainer = styled.button`
-    width: 180px;
+    width: 140px;
     height: 40px;
     padding: 10px;
     background: #2D78EB;
@@ -102,4 +129,8 @@ const ButtonContainer = styled.button`
     font-size: 18px;
     font-weight: 700;
     cursor: pointer;
+
+    @media (max-width: 600px) {
+        display: none;
+    }
 `   
