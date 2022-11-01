@@ -102,7 +102,7 @@ const NewClientMobileButton = styled.button`
     height: 60px;
     position: fixed;
     right: 30px;
-    bottom: 30px;
+    bottom: 40px;
     background: #2D78EB;
     color: #FFFFFF;
     border-style: none;
