@@ -55,12 +55,11 @@ const Container = styled.div`
     align-items: center;
     width: 100vw;
     height: 100%;
-    background-color: #DCDCDC;
 `
 
 const ClientsListContainer = styled.div`
     width: 90%;
-    height: 100vh;
+    height: 100%;
     border-radius: 5px;
     margin: 40px 0px 40px 0px;
 
