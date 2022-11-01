@@ -72,7 +72,7 @@ const ListContainerHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 
     h1{
         font-size: 22px;
