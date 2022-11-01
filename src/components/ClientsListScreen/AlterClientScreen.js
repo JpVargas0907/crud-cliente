@@ -66,7 +66,7 @@ const Content = styled.div`
     width: 100vw;
     background: #F6F4F6CC 0% 0% no-repeat padding-box;
     opacity: 1;
-    z-index: 1;
+    z-index: 2;
 `
 const AlterClientForm = styled.div`
     display: flex;
