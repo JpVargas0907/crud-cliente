@@ -32,7 +32,7 @@ export default function ClientsListScreen() {
                 return <ClientContainer key={id} id={id} name={name}/>
             })
         } else {
-            return <p>Sem clientes cadastrados</p>
+            return <p class="message">Sem clientes cadastrados! Adicione um novo cliente para que ele apareça em nossa listagem.</p>
         }
     }
 
@@ -63,6 +63,10 @@ const ClientsListContainer = styled.div`
     height: 100vh;
     border-radius: 5px;
     margin: 40px 0px 40px 0px;
+
+    .message{
+        color: #4D4B4D;
+    }
 `
 const ListContainerHeader = styled.div`
     width: 100%;
@@ -99,7 +103,7 @@ const NewClientMobileButton = styled.button`
     height: 60px;
     position: fixed;
     right: 30px;
-    bottom: 30px;
+    bottom: 50px;
     background: #2D78EB;
     color: #FFFFFF;
     border-style: none;

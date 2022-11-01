@@ -125,6 +125,7 @@ const Form = styled.form`
 
     button{
         font-weight: 700;
+        font-size: 14px;
         width: 160px;
         height: 48px;
         background: #2D78EB;
